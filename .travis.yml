@@ -1,4 +1,9 @@
 language: python
+
+# Please don't spam me with email
+notifications:
+  email: false
+
 python:
   - "2.7"
 # Install dependencies
