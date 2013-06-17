@@ -1,0 +1,7 @@
+language: python
+python:
+  - "2.7"
+# Install dependencies
+install: "pip install behave"
+# Command to run the tests
+script: behave -k --tags wip
