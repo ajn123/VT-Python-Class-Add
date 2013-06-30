@@ -9,17 +9,21 @@ courses = []
 def clearConsole():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def checkVersion():
+def checkVersion(major, minor, micro):
 
-    major, minor, micro = sys.version_info[:3]
     if major == 2 and minor <= 7 and micro <= 4: # <= Python 2.7.4 Will Work
         pass
     elif major <= 2 and minor <= 9 and micro <= 9: # < Python 3.0.0 Will Probably Work
-        print "This May Work, Python 2.7.x is Known to Work and {0}.{1}.{2} is Installed".format(major, minor, micro)
+        return
+        """
+        Warning: This May Work, Python 2.7.x is Known to Work and {0}.{1}.{2} is Installed
+        """.format(major, minor, micro)
     elif major >= 3 and minor >= 0 and micro >= 0: # > Python 3.x.x Will Definitely Not Work
-        print "This Won't Work, Please Install The Latest Python Version 2.x.x"
-        print "Exit Status: 1 - Incompatible Python Version Installed (Python 3.x.x Detected)"
-        sys.exit(1)
+        return
+        """
+        Error: This Won't Work, Please Install The Latest Python Version 2.x.x
+        Exit Status: 1 - Incompatible Python Version Installed (Python 3.x.x Detected)
+        """
 
 def login(username, password):
 
@@ -198,7 +202,16 @@ def clean(classinfo):
 def main():
 
     clearConsole();
-    checkVersion();
+
+    major, minor, micro = sys.version_info[:3]
+
+    message = checkVersion(major, minor, micro)
+
+    if message is not None:
+        print message
+
+    if "Error" in message:
+        sys.exit(1)
 
     username = raw_input('PID: ')
     password = getpass()
