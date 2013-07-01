@@ -12,7 +12,7 @@ def clearConsole():
 def checkVersion(major, minor, micro):
 
     if major == 2 and minor <= 7 and micro <= 4: # <= Python 2.7.4 Will Work
-        pass
+        return ""
     elif major <= 2 and minor <= 9 and micro <= 9: # < Python 3.0.0 Will Probably Work
         return
         """
@@ -204,16 +204,15 @@ def main():
     clearConsole();
 
     major, minor, micro = sys.version_info[:3]
-
     message = checkVersion(major, minor, micro)
 
-    if message is not None:
+    if message != "":
         print message
 
     if "Error" in message:
         sys.exit(1)
 
-    username = raw_input('PID: ')
+    username = getpass('PID: ')
     password = getpass()
 
     print "Logging In.. "; sys.stdout.flush()

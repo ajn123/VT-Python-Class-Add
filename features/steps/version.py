@@ -1,5 +1,5 @@
 from behave import *
-from main_program import *
+import main_program
 
 major, minor, micro = "", "", ""
 actual_message = ""
@@ -8,7 +8,7 @@ expected_message = ""
 @given('I have Python {version} installed')
 def impl(context, version):
     if version == "2.7.4":
-        expected_message = None
+        expected_message = ""
     elif version == "2.9.9":
         expected_message = "Warning:"
     elif version == "3.0.1":
@@ -21,7 +21,7 @@ def impl(context, version):
 
 @when('I try to check my version')
 def impl(context):
-    actual_message = checkVersion(major, minor, micro)
+    actual_message = main_program.checkVersion(major, minor, micro)
 
 @then('I should see {expected}')
 def impl(context, expected):
