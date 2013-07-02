@@ -1,34 +1,23 @@
 from behave import *
-import main_program
+from main_program import Navigator
 
-major, minor, micro = "", "", ""
-actual_message = ""
-expected_message = ""
+nav = Navigator()
 
 @given('I have Python {version} installed')
 def impl(context, version):
-    if version == "2.7.4":
-        expected_message = ""
-    elif version == "2.9.9":
-        expected_message = "Warning:"
-    elif version == "3.0.1":
-        expected_message = "Error:"
-
     version = version.split(".")
     version = tuple(version)
-    global major, minor, micro
-    major, minor, micro = version
+    context.version = version # Pack the Tuple Arguments
 
 @when('I try to check my version')
 def impl(context):
-    actual_message = main_program.checkVersion(major, minor, micro)
+    context.actual = str(nav.checkVersion(*context.version)) # Unpack the Tuple Arguments
 
-@then('I should see {expected}')
+@then('I should see "{expected}" in my message')
 def impl(context, expected):
-    try:
-        assert expected_message in actual_message
-    except AssertionError as e:
-        e.args += ('Expected Message: ', expected_message, 'Actual Message: ', actual_message)
-        raise
+    if expected == "Nothing":
+        assert "" in context.actual
+    else:
+        assert expected in context.actual
 
 

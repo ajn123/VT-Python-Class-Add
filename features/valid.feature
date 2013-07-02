@@ -2,25 +2,12 @@ Feature: Valid Course Information
     Background:
         Given I am logged in
 
-    @valid
+    @valid @human @wip
     Scenario: Incorrect CRN Length
-        Given I enter in the CRN number "923"
-        When my course info is checked
-        Then I should see "Please Enter a CRN number that is 5 digits or enter a subject and course number"
+        Given I enter in the CRN number "923" and my course info is checked
+        Then I will see "Please enter a CRN number that is 5 digits"
 
-    @valid
+    @valid @human @wip
     Scenario: Correct CRN Length
-        Given I enter in the CRN number "92083"
-        When my course info is checked
-        Then I should see no message
-
-
-
-
-    Scenario: Enter Subject and Course Number
-        Given I enter in the subject "CS" and the course number "3114"
-        When I click the submit button
-        Then I should see a list of classes.
-        Given I enter in the CRN number "92083"
-        When I click the submit button
-        Then my class should show up
+        Given I enter in the CRN number "92383" and my course info is checked
+        Then I will see "Nothing"
