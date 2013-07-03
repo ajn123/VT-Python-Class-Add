@@ -1,4 +1,4 @@
-from behave import given, when, then
+from behave import given
 from main_program import Navigator
 from getpass import getpass
 

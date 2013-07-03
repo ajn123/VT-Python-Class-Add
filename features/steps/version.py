@@ -18,7 +18,7 @@ def impl(context):
 
 @then('I should see "{expected}" in my message')
 def impl(context, expected):
-    if expected == "Nothing":
+    if (expected == "Nothing"):
         assert "" in context.actual
     else:
         assert expected in context.actual
