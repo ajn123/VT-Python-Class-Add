@@ -15,13 +15,13 @@ class Navigator():
         minor = int(minor)
         micro = int(micro)
 
-        if major == 2 and minor <= 7 and micro <= 4: # <= Python 2.7.4 Will Work
+        if (major, minor, micro) <= (2, 7, 4):  # <= Python 2.7.4 Will Work
             return ""
-        elif major <= 2 and minor <= 9 and micro <= 9: # < Python 3.0.0 Will Probably Work
+        elif (major, minor, micro) <= (9, 9, 9):  # < Python 3.0.0 Will Probably Work
             return """
             Warning: This May Work, Python 2.7.x is Known to Work and {0}.{1}.{2} is Installed
             """.format(major, minor, micro)
-        elif major >= 3 and minor >= 0 and micro >= 0: # > Python 3.x.x Will Definitely Not Work
+        elif major >= 3 and minor >= 0 and micro >= 0:  # > Python 3.x.x Will Definitely Not Work
             return """
             Error: This Won't Work, Please Install The Latest Python Version 2.x.x
             Exit Status: 1 - Incompatible Python Version Installed (Python 3.x.x Detected)
@@ -31,8 +31,8 @@ class Navigator():
         login_url = "https://auth.vt.edu/login?service=https://webapps.banner.vt.edu/banner-cas-prod/authorized/banner/SelfService"
         br = self.br
         br.open(login_url)
-        br.select_form(nr = 0)      # Select the 'Login' Form
-        br.set_handle_robots(False) # Ignore robots.txt file
+        br.select_form(nr=0)  # Select the 'Login' Form
+        br.set_handle_robots(False)  # Ignore robots.txt file
         br.form["username"] = username
         br.form["password"] = password
         resp = br.submit()
@@ -49,7 +49,7 @@ class Navigator():
 
         valid = True
 
-        if (len(crn) != 5 and crn != ""): # If a CRN is given, check if it's valid
+        if (len(crn) != 5 and crn != ""):  # If a CRN is given, check if it's valid
             # validity[0] = False
             valid = "Please enter a CRN number that is 5 digits"
 
