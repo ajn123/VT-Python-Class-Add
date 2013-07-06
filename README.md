@@ -31,7 +31,7 @@ TODO - Add Instructions for Installing
 
 ## Usage
 
-python main_program.py
+python Navigator.py
 
 TODO - Add Instructions for Running Program
 
