@@ -6,13 +6,10 @@ notifications:
 
 python:
     - 2.7
-    - 3.2
-
-matrix:
-    allow_failures:
-        - python: 3.2
 
 # Install dependencies
 install: "pip install behave mechanize beautifulsoup"
 # Command to run the tests
-script: behave -k --tags wip
+
+# k - Don't print skipped tests, c - No color output, --no-capture - Don't capture std-out
+script: behave -ck --no-capture --tags @travis
