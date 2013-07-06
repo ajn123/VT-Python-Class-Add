@@ -1,5 +1,5 @@
 from behave import given, when, then
-from main_program import Navigator
+from Navigator import Navigator
 
 nav = Navigator()
 

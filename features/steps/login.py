@@ -1,5 +1,5 @@
 from behave import given
-from main_program import Navigator
+from Navigator import Navigator
 from getpass import getpass
 
 nav = Navigator()
