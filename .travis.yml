@@ -12,4 +12,4 @@ install: "pip install -r requirements.txt"
 # Command to run the tests
 
 # k - Don't print skipped tests, c - No color output, --no-capture - Don't capture std-out
-script: behave -k --no-capture --tags @travis
+script: behave -ck --no-capture --tags @travis
