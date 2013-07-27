@@ -25,15 +25,15 @@ I wanted to create my own version that:
 You'll need the following installed
 
 - Python 2.7.X (where X can be any number)
-- pip [pip](http://www.pip-installer.org/en/latest/installing.html)
+- [pip](http://www.pip-installer.org/en/latest/installing.html)
 
 ## Usage
 
 First install the required packages by running
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
 Now just run
-python Navigator.py
+    python Navigator.py
 
 TODO - Need More Usage Instructions
 
