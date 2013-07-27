@@ -4,10 +4,10 @@ Feature: Valid Course Information
 
     @valid @human
     Scenario: Incorrect CRN Length
-        Given I enter in the CRN number "923" and my course info is checked
+        Given I enter an incorrect CRN number "923" and my course info is checked
         Then I will see "Please enter a CRN number that is 5 digits"
 
     @valid @human
     Scenario: Correct CRN Length
-        Given I enter in the CRN number "92383" and my course info is checked
+        Given I enter a correct CRN number "92383" and my course info is checked
         Then I will see "Nothing"

@@ -7,6 +7,10 @@ class Navigator():
     br = mechanize.Browser()
     logged_in = False
 
+
+    def clearBrowser(self):
+        self.br = mechanize.Browser()
+
     def clearConsole(self):
         os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -15,13 +19,13 @@ class Navigator():
         minor = int(minor)
         micro = int(micro)
 
-        if (major, minor, micro) <= (2, 7, 4):  # <= Python 2.7.4 Will Work
+        if [major, minor, micro] <= [2, 7, 4]:  # <= Python 2.7.4 Will Work
             return ""
-        elif (major, minor, micro) <= (2, 9, 9):  # < Python 3.0.0 Will Probably Work
+        elif [major, minor, micro] <= [2, 9, 9]:  # < Python 3.0.0 Will Probably Work
             return """
             Warning: This May Work, Python 2.7.x is Known to Work and {0}.{1}.{2} is Installed
             """.format(major, minor, micro)
-        elif (major, minor, micro) >= (3, 0, 0):  # > Python 3.x.x Will Definitely Not Work
+        elif [major, minor, micro] >= [3, 0, 0]:  # >= Python 3.x.x Will Definitely Not Work
             return """
             Error: This Won't Work, Please Install The Latest Python Version 2.x.x
             Exit Status: 1 - Incompatible Python Version Installed (Python 3.x.x Detected)
@@ -45,12 +49,21 @@ class Navigator():
             return True
 
     def validCourseInfo(self, crn="", term="09", year="2013", subj="", crse=""):
-        # validity = [True, True, True, True, True]
+        errors = []
 
-        valid = True
+        if (crn and len(crn) == 5 and crn.isdigit() is True):  # If a CRN is given
+            pass
+        else:
+            errors.append("Please enter a valid CRN")
 
-        if (len(crn) != 5 and crn != ""):  # If a CRN is given, check if it's valid
-            # validity[0] = False
-            valid = "Please enter a CRN number that is 5 digits"
+        if (subj and subj.isalpha() is True):  # If a Subject is given
+            pass
+        else:
+            errors.append("Please enter a valid Subject")
 
-        return valid
+        if (crse and len(crse) == 4 and crse.isdigit() is True):  # If a Course Number is given
+            pass
+        else:
+            errors.append("Please enter a valid Course Number")
+
+        return errors
