@@ -14,26 +14,28 @@ This is a python script for command line usage.  It will (soon) be able to
 
 I wanted to create my own version that:
 
-- Had more documentation
-- Was easier to setup
-- Included a few additional features
+- Had better documentation on how to use this tool
+- Was easier to get setup and running
+- Included more features such as searching by subject
+- Had better and more friendly error messages
 - And was written in Python
 
 ## Getting Started
 
 You'll need the following installed
 
-- Python 2.7.X where X can be any number
-- mechanize
-- requests
-
-TODO - Add Instructions for Installing
+- Python 2.7.X (where X can be any number)
+- pip [pip](http://www.pip-installer.org/en/latest/installing.html)
 
 ## Usage
 
+First install the required packages by running
+pip install -r requirements.txt
+
+Now just run
 python Navigator.py
 
-TODO - Add Instructions for Running Program
+TODO - Need More Usage Instructions
 
 ## Testing [![Build Status](https://travis-ci.org/jason-riddle/VT-Python-Class-Add.png)](https://travis-ci.org/jason-riddle/VT-Python-Class-Add)
 
