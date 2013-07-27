@@ -51,19 +51,22 @@ class Navigator():
     def validCourseInfo(self, crn="", term="09", year="2013", subj="", crse=""):
         errors = []
 
-        if (crn and len(crn) == 5 and crn.isdigit() is True):  # If a CRN is given
-            pass
-        else:
-            errors.append("Please enter a valid CRN")
+        if crn:
+            if (len(crn) == 5 and crn.isdigit() is True):  # If a CRN is given
+                pass
+            else:
+                errors.append("Please enter a valid CRN")
 
-        if (subj and subj.isalpha() is True):  # If a Subject is given
-            pass
-        else:
-            errors.append("Please enter a valid Subject")
+        if subj:
+            if (subj.isalpha() is True):  # If a Subject is given
+                pass
+            else:
+                errors.append("Please enter a valid Subject")
 
-        if (crse and len(crse) == 4 and crse.isdigit() is True):  # If a Course Number is given
-            pass
-        else:
-            errors.append("Please enter a valid Course Number")
+        if crse:
+            if (len(crse) == 4 and crse.isdigit() is True):  # If a Course Number is given
+                pass
+            else:
+                errors.append("Please enter a valid Course Number")
 
         return errors
