@@ -1,5 +1,4 @@
-import re, os, sys, mechanize
-from getpass import getpass
+import re, mechanize
 from BeautifulSoup import BeautifulSoup
 
 class Navigator():
@@ -7,29 +6,8 @@ class Navigator():
     br = mechanize.Browser()
     logged_in = False
 
-
     def clearBrowser(self):
         self.br = mechanize.Browser()
-
-    def clearConsole(self):
-        os.system('cls' if os.name == 'nt' else 'clear')
-
-    def checkVersion(self, major, minor, micro):
-        major = int(major)
-        minor = int(minor)
-        micro = int(micro)
-
-        if [major, minor, micro] <= [2, 7, 4]:  # <= Python 2.7.4 Will Work
-            return ""
-        elif [major, minor, micro] <= [2, 9, 9]:  # < Python 3.0.0 Will Probably Work
-            return """
-            Warning: This May Work, Python 2.7.x is Known to Work and {0}.{1}.{2} is Installed
-            """.format(major, minor, micro)
-        elif [major, minor, micro] >= [3, 0, 0]:  # >= Python 3.x.x Will Definitely Not Work
-            return """
-            Error: This Won't Work, Please Install The Latest Python Version 2.x.x
-            Exit Status: 1 - Incompatible Python Version Installed (Python 3.x.x Detected)
-            """
 
     def login(self, username, password):
         login_url = "https://auth.vt.edu/login?service=https://webapps.banner.vt.edu/banner-cas-prod/authorized/banner/SelfService"
@@ -48,25 +26,23 @@ class Navigator():
             self.logged_in = True
             return True
 
-    def validCourseInfo(self, crn="", term="09", year="2013", subj="", crse=""):
-        errors = []
+    def find(self, subj="", crse="", crn="", term="", year=""):
 
-        if crn:  # If a CRN is given
-            if (len(crn) == 5 and crn.isdigit() is True):
-                pass
-            else:
-                errors.append("Please enter a valid CRN")
+        url = "https://banweb.banner.vt.edu/ssb/prod/HZSKVTSC.P_ProcRequest?"
+        # Campus is Blacksburg - 0
+        # Area AR%25 is all types of area classes
 
-        if subj:  # If a Subject is given
-            if (subj.isalpha() is True):
-                pass
-            else:
-                errors.append("Please enter a valid Subject")
+        url += "CAMPUS=" + str(0) + "&TERMYEAR=" + year + term
+        url += "&CORE_CODE=" + "AR%25" + "&SUBJ_CODE=" + subj
+        url += "&CRSE_NUMBER=" + crse + "&crn=" + crn + "&open_only=" + ""
+        url += "&PRINT_FRIEND=" + "Y" # + "&BTN_PRESSED=" + "FIND+class+sections"
 
-        if crse:  # If a Course Number is given
-            if (len(crse) == 4 and crse.isdigit() is True):
-                pass
-            else:
-                errors.append("Please enter a valid Course Number")
+        # print url
 
-        return errors
+        browser = self.br.open(url)
+        contents = browser.read()
+
+        if ("NO SECTIONS FOUND FOR THIS INQUIRY." in contents):
+            return None
+
+        return contents
