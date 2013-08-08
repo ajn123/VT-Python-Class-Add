@@ -34,7 +34,7 @@ class Navigator():
         url += "CAMPUS=" + str(0) + "&TERMYEAR=" + year + term
         url += "&CORE_CODE=" + "AR%25" + "&SUBJ_CODE=" + subj
         url += "&CRSE_NUMBER=" + crse + "&crn=" + crn + "&open_only=" + ""
-        url += "&PRINT_FRIEND=" + "Y" # + "&BTN_PRESSED=" + "FIND+class+sections"
+        url += "&PRINT_FRIEND=" + "Y"  # + "&BTN_PRESSED=" + "FIND+class+sections"
 
         browser = self.br.open(url)
         contents = browser.read()

@@ -1,18 +1,19 @@
 # Helper Classes
 
-import re, os, sys, mechanize
-from getpass import getpass
+import re 
 from BeautifulSoup import BeautifulSoup
+
 
 def YesNo(answer):
 
-    while (re.search(r'([Yy][Ee]*[Ss]*)|([Nn][Oo]*)', answer) == None):
+    while (re.search(r'([Yy][Ee]*[Ss]*)|([Nn][Oo]*)', answer) is  None):
         answer = raw_input("Please Enter a Valid Answer: ")
 
     if re.search(r'[Yy][Ee]*[Ss]*', answer):
         return "Yes"
     else:
         return "No"
+
 
 class ErrorCheck():
 
@@ -40,10 +41,10 @@ class ErrorCheck():
         return errors
 
     def harderChecks(self, crn="", term="09", year="2013", subj="", crse=""):
-        errors = []
+        pass
+
 
 class Cleaner():
-
     data = ""
 
     def __init__(self, contents):
@@ -70,26 +71,26 @@ class Cleaner():
         classinfo = [string.strip() for string in classinfo]    # Remove White Space Characters from Each Element
         classinfo = filter(None, classinfo)                     # Remove Empty Entries
 
-        return classinfo # Returns a List
+        return classinfo  # Returns a List
 
     def parseList(self, data):
         all_sections = []
         section_info = []
 
-        current_element = data.pop(0) # Let's pop the first element since this is the first CRN
-        section_info.append(current_element) # Add it to section info
+        current_element = data.pop(0)  # Let's pop the first element since this is the first CRN
+        section_info.append(current_element)  # Add it to section info
 
-        while len(data) > 0: # While we have at least one element
-            current_element = data[0] # Let's look at the first element
+        while len(data) > 0:  # While we have at least one element
+            current_element = data[0]  # Let's look at the first element
 
-            if (len(current_element) == 5 and current_element.isdigit()): # If the element's length is 5 and is a digit, then we have a CRN number
+            if (len(current_element) == 5 and current_element.isdigit()):  # If the element's length is 5 and is a digit, then we have a CRN number
                 all_sections.append(section_info)
                 section_info = []
 
-            current_element = data.pop(0) # Let's pop the first element
-            section_info.append(current_element) # and add it to section info
+            current_element = data.pop(0)  # Let's pop the first element
+            section_info.append(current_element)  # and add it to section info
 
-        all_sections.append(section_info) # For the last section
+        all_sections.append(section_info)  # For the last section
 
         return all_sections
 
@@ -124,6 +125,7 @@ class Cleaner():
             string += info.format(*course)
 
         return string
+
 
 class CourseWatch():
     pass
