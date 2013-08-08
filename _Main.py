@@ -2,7 +2,7 @@ import sys
 import os
 from getpass import getpass
 from Navigator import Navigator
-from Helper import ErrorCheck, YesNo
+from Helper import ErrorCheck, YesNo, Cleaner
 
 
 def clearConsole():
