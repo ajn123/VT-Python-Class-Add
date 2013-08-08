@@ -105,10 +105,9 @@ def main():
 
     print "Here's What I Found.."
 
-    for course in course_info:
-        print course
+    print course_info
 
-    answer = YesNo(raw_input("Do You Wish to Add a Course? (Yes/Y or No/N): "))
+    answer = YesNo(raw_input("Do You Wish to Add a Course? Enter (y)es or (n)o: "))
 
     if answer == "Yes":
         CRN = raw_input("Please Enter the CRN: ")

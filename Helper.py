@@ -44,18 +44,22 @@ class ErrorCheck():
 
 class Cleaner():
 
+    data = ""
+
     def __init__(self, contents):
         soup = BeautifulSoup(contents)
 
-        data = soup.findAll("td", {"class" : "pldefault"})
-        data = self.toList(data)
-        data = self.parseList(data)
-        data = self.pretty(data)
+        self.data = soup.findAll("td", {"class" : "pldefault"})
+        self.data = self.toList(self.data)
+        self.data = self.parseList(self.data)
+        self.data = self.pretty(self.data)
 
-        return data
+        return None
+
+    def __str__(self):
+        return self.data
 
     def toList(self, classinfo):
-
         classinfo = str(classinfo)
 
         classinfo = re.sub(r'(&nbsp;){0,}', '', classinfo)      # Replace &nbsp; with ''
@@ -69,7 +73,6 @@ class Cleaner():
         return classinfo # Returns a List
 
     def parseList(self, data):
-
         all_sections = []
         section_info = []
 
@@ -91,32 +94,36 @@ class Cleaner():
         return all_sections
 
     def pretty(self, course_info):
+        string = ""
 
-        info = """
-            CRN:            {}
-            Course:         {}
-            Description:    {}
-            Type:           {}
-            Credit Hours:   {}
-            Capacity:       {}
-            Instructor:     {}
-            Day(s):         {}
-            Begin:          {}
-            End:            {}
-            Location:       {}
-            Exam:           {}
-            """
+        for course in course_info:
+            info = """
+                CRN:            {}
+                Course:         {}
+                Description:    {}
+                Type:           {}
+                Credit Hours:   {}
+                Capacity:       {}
+                Instructor:     {}
+                Day(s):         {}
+                Begin:          {}
+                End:            {}
+                Location:       {}
+                Exam:           {}
+                """
 
-        if "* Additional Times *" in course_info:
-            info += """
-            {}
-            Day(s)          {}
-            Begin:          {}
-            End:            {}
-            Location:       {}
-            """
+            if "* Additional Times *" in course_info:
+                info += """
+                {}
+                Day(s)          {}
+                Begin:          {}
+                End:            {}
+                Location:       {}
+                """
 
-        return info.format(*course_info)
+            string += info.format(*course)
+
+        return string
 
 class CourseWatch():
     pass

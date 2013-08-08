@@ -27,17 +27,14 @@ class Navigator():
             return True
 
     def find(self, subj="", crse="", crn="", term="", year=""):
-
         url = "https://banweb.banner.vt.edu/ssb/prod/HZSKVTSC.P_ProcRequest?"
-        # Campus is Blacksburg - 0
-        # Area AR%25 is all types of area classes
+        # CAMPUS=0 is Blacksburg
+        # AR%25 is All Areas of Classes
 
         url += "CAMPUS=" + str(0) + "&TERMYEAR=" + year + term
         url += "&CORE_CODE=" + "AR%25" + "&SUBJ_CODE=" + subj
         url += "&CRSE_NUMBER=" + crse + "&crn=" + crn + "&open_only=" + ""
         url += "&PRINT_FRIEND=" + "Y" # + "&BTN_PRESSED=" + "FIND+class+sections"
-
-        # print url
 
         browser = self.br.open(url)
         contents = browser.read()
