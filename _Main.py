@@ -1,11 +1,12 @@
-import sys, os
+import sys
+import os
 from getpass import getpass
 from Navigator import Navigator
-from Helper import *
-# import Helper
+
 
 def clearConsole():
     os.system('cls' if os.name == 'nt' else 'clear')
+
 
 def checkVersion(major, minor, micro):
     major = int(major)
@@ -39,9 +40,10 @@ def main():
     username = getpass('PID: ')
     password = getpass()
 
-    print "Logging In.. "; sys.stdout.flush()
+    print "Logging In.. "
+    sys.stdout.flush()
 
-    while (nav.login(username, password) == False):
+    while (nav.login(username, password) is False):
         print "Please Try Again"
 
         username = raw_input('PID: ')
@@ -69,9 +71,9 @@ def main():
 
     while (errors):
 
-        CRN  = raw_input('CRN: ') or "" # or "92083"
-        TERM = raw_input('TERM (F, S, S1, or S2) (F - Default): ') or "09" # Default TERM if nothing is given
-        YEAR = raw_input('YEAR (2013 - Default): ') or "2013" # Default YEAR if nothing is given
+        CRN = raw_input('CRN: ') or ""  # or "92083"
+        TERM = raw_input('TERM (F, S, S1, or S2) (F - Default): ') or "09"  # Default TERM if nothing is given
+        YEAR = raw_input('YEAR (2013 - Default): ') or "2013"  # Default YEAR if nothing is given
         SUBJ = raw_input('SUBJ: ') or ""
         CRSE = raw_input('CRSE: ') or ""
 
