@@ -1,12 +1,12 @@
 # Helper Classes
 
-import re 
+import re
 from BeautifulSoup import BeautifulSoup
 
 
 def YesNo(answer):
 
-    while (re.search(r'([Yy][Ee]*[Ss]*)|([Nn][Oo]*)', answer) is  None):
+    while (re.search(r'([Yy][Ee]*[Ss]*)|([Nn][Oo]*)', answer) is None):
         answer = raw_input("Please Enter a Valid Answer: ")
 
     if re.search(r'[Yy][Ee]*[Ss]*', answer):
@@ -50,7 +50,7 @@ class Cleaner():
     def __init__(self, contents):
         soup = BeautifulSoup(contents)
 
-        self.data = soup.findAll("td", {"class" : "pldefault"})
+        self.data = soup.findAll("td", {"class":"pldefault"})
         self.data = self.toList(self.data)
         self.data = self.parseList(self.data)
         self.data = self.pretty(self.data)
@@ -129,4 +129,3 @@ class Cleaner():
 
 class CourseWatch():
     pass
-

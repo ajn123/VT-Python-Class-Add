@@ -1,5 +1,5 @@
-import re, mechanize
-from BeautifulSoup import BeautifulSoup
+import  mechanize
+
 
 class Navigator():
 

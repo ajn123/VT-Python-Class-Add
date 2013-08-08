@@ -2,8 +2,6 @@ import sys
 import os
 from getpass import getpass
 from Navigator import Navigator
-from Helper import *
-# import Helper
 
 
 def clearConsole():
@@ -42,7 +40,8 @@ def main():
     username = getpass('PID: ')
     password = getpass()
 
-    print "Logging In.. "; sys.stdout.flush()
+    print "Logging In.. "
+    sys.stdout.flush()
 
     while (nav.login(username, password) is False):
         print "Please Try Again"
