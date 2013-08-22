@@ -19,12 +19,17 @@ class Navigator():
         br.form["password"] = password
         resp = br.submit()
 
-        if ("Invalid username or password" in resp.read()):
+        response = resp.read()
+
+        if ("Invalid username or password" in response):
             return False
 
-        else:
-            self.logged_in = True
-            return True
+        elif ("Logged In with Warning" in response):
+            # Blah Blah Blah .. Need to Set Recovery Options
+            br.open("https://banweb.banner.vt.edu/ssomanager_prod/c/SSB")  # Ignore this message and continue
+
+        self.logged_in = True
+        return True
 
     def find(self, subj="", crse="", crn="", term="", year=""):
         url = "https://banweb.banner.vt.edu/ssb/prod/HZSKVTSC.P_ProcRequest?"
@@ -43,3 +48,8 @@ class Navigator():
             return None
 
         return contents
+
+    def addCourseList(self, courses):
+        for course in courses:
+            pass
+

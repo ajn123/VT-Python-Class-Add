@@ -72,9 +72,10 @@ def main():
     while (nav.login(username, password) is False):
         clearConsole()
         print "I was Unable to Login. Please Try Again."
-        print ""
 
+        print ""
         print "Please Enter Your.."
+        print ""
         username = getpass('PID: ')
         password = getpass()
 
@@ -92,8 +93,8 @@ def main():
         # The default term is '09' which is Fall Semester if nothing is entered.
         TERM = raw_input('TERM (F, S, S1, or S2) (F - Default): ') or "09"
         YEAR = raw_input('YEAR (2013 - Default): ') or "2013"
-        SUBJ = raw_input('SUBJ: ') # or "CS"
-        CRSE = raw_input('CRSE: ') # or "2114"
+        SUBJ = raw_input('SUBJ: ')  or "CS"
+        CRSE = raw_input('CRSE: ') or "2114"
 
         clearConsole()
         print "Checking for Errors in Course Information."
@@ -142,10 +143,12 @@ def main():
         if answer == "Yes":
             CRN = raw_input("Please Enter the CRN: ")
             courses.append(CRN)
+            print "CRN(s) Added So Far: " + str(courses)
         else:
             answer = False
 
     print "I Will Try to Add Your Courses."
+
 
 
 

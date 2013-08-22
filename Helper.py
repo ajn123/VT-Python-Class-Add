@@ -114,7 +114,7 @@ class Cleaner():
                 Exam:           {}
                 """
 
-            if "* Additional Times *" in course_info:
+            if "* Additional Times *" in course:
                 info += """
                 {}
                 Day(s)          {}
