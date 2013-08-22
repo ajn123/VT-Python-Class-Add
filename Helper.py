@@ -98,6 +98,7 @@ class Cleaner():
         string = ""
 
         for course in course_info:
+
             info = """
                 CRN:            {}
                 Course:         {}
